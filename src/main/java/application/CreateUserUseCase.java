@@ -13,4 +13,12 @@ public class CreateUserUseCase {
     public void execute(User user) {
         userService.createUser(user);
     }
+
+    public void executeUpdate(User userUpdate){
+        userService.updateUser(userUpdate);
+    }
+
+    public void executeDelete(Long id) {
+        userService.deleteUser(id);
+    }
 }

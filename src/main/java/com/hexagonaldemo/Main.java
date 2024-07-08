@@ -11,6 +11,6 @@ public class Main {
         CreateUserUseCase createUserUseCase = new CreateUserUseCase(userService);
         UserController consoleAdapter = new UserController(createUserUseCase);
 
-        consoleAdapter.start();
+        consoleAdapter.deleteUser();
     }
 }

@@ -58,4 +58,32 @@ public class UserRepository implements UserService {
         return user;
     }
 
+    @Override
+    public void updateUser(User userUpdate) {
+        String sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+        System.out.println(userUpdate.getId());
+        try (Connection connection = DatabaseConfig.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, userUpdate.getName());
+            statement.setString(2, userUpdate.getEmail());
+            statement.setLong(3, userUpdate.getId());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        String query = "DELETE FROM users WHERE id = ?";
+        try  (Connection connection = DatabaseConfig.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
